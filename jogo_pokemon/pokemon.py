@@ -61,7 +61,7 @@ class Ataques(Pokemon):
         ataque1_dano = ataque1[0]
         
         if (ataque0[1] > ataque1[1]):
-            print(self.nome)
+            # print(self.nome)
             
             if (ataque0[2] == "Sp_Atk"):
                 pokemon.vida = ataque_sp_atk(pokemon.vida, ataque0_dano, pokemon.spdefesa)
@@ -71,8 +71,27 @@ class Ataques(Pokemon):
             vida_atual(pokemon.nome, pokemon.vida)
             
             if (ataque1[2] == "Sp_Atk"):
+                self.vida = ataque_sp_atk(self.vida, ataque0_dano, self.spdefesa)
+            else:
+                self.vida = ataque_f_atk(self.vida, ataque0_dano, self.defesa)
+                
+            vida_atual(self.nome, self.vida)
         else:
-            print(pokemon.nome)
+            # print(pokemon.nome)
+            
+            if (ataque1[2] == "Sp_Atk"):
+                self.vida = ataque_sp_atk(self.vida, ataque0_dano, self.spdefesa)
+            else:
+                self.vida = ataque_f_atk(self.vida, ataque0_dano, self.defesa)
+                
+            vida_atual(self.nome, self.vida)
+            
+            if (ataque0[2] == "Sp_Atk"):
+                pokemon.vida = ataque_sp_atk(pokemon.vida, ataque0_dano, pokemon.spdefesa)
+            else:
+                pokemon.vida = ataque_f_atk(pokemon.vida, ataque0_dano, pokemon.defesa)
+                
+            vida_atual(pokemon.nome, pokemon.vida)
 
 def ataque_sp_atk(vida: int, dano: int, defesa: int):
         vida_final = vida - (dano / defesa)
@@ -94,7 +113,5 @@ pikachu.get_treinador()
 bulbassaur = Ataques("Bulbassaur", 1, "Grama", 5, 20, 25, 10, 20, "Red", 50)
 
 bulbassaur.get_treinador()
-
-# print(bulbassaur.ataque_rapido())
 
 pikachu.atacar(pikachu.bola_eletrica(), bulbassaur.ataque_de_folhas(), bulbassaur)
